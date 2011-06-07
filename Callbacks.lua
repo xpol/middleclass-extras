@@ -70,7 +70,7 @@ local function _getEntry(theClass, methodName)
 end
 
 local function _hasEntry(theClass, methodName)
-  if not includes(Callbacks, theClass) then return false end
+  if not theClass:includes(Callbacks) then return false end
   if _getEntry(theClass, methodName) ~= nil then return true end
   return _hasEntry(theClass.superclass, methodName)
 end
@@ -221,7 +221,7 @@ end
 Callbacks = {}
 
 function Callbacks:included(theClass)
-  if includes(Callbacks, theClass) then return end
+  if theClass:includes(Callbacks) then return end
 
   _modifyAllocateMethod(theClass)
   _modifySubclassMethod(theClass)
